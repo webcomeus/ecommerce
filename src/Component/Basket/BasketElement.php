@@ -84,6 +84,28 @@ class BasketElement implements \Serializable, BasketElementInterface
     protected $delete = false;
 
     /**
+     * @var integer
+     */
+    protected $width;
+
+    /**
+     * @var integer
+     */
+    protected $length;
+
+    protected $image = null;
+
+    /**
+     * @var int
+     */
+    protected $imageId = null;
+
+    /**
+     * @var string
+     */
+    protected $imageProvider = null;
+
+    /**
      * {@inheritdoc}
      */
     public function setPosition($position)
@@ -369,6 +391,10 @@ class BasketElement implements \Serializable, BasketElementInterface
             'options'           => $this->options,
             'name'              => $this->name,
             'productCode'       => $this->productCode,
+            'width'             => $this->width,
+            'length'            => $this->length,
+            'imageId'           => $this->imageId,
+            'imageProvider'     => $this->imageProvider,
         ));
     }
 
@@ -389,6 +415,10 @@ class BasketElement implements \Serializable, BasketElementInterface
         $this->options           = $data['options'];
         $this->name              = $data['name'];
         $this->productCode       = $data['productCode'];
+        $this->width             = $data['width'];
+        $this->length            = $data['length'];
+        $this->imageId           = $data['imageId'];
+        $this->imageProvider     = $data['imageProvider'];
     }
 
     /**
@@ -438,4 +468,69 @@ class BasketElement implements \Serializable, BasketElementInterface
     {
         return $this->productDefinition instanceof ProductDefinition;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setImageId($imageId)
+    {
+        $this->imageId = $imageId;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getImageId()
+    {
+        return $this->imageId;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setImageProvider($imageProvider)
+    {
+        $this->imageProvider = $imageProvider;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getImageProvider()
+    {
+        return $this->imageProvider;
+    }
+
 }

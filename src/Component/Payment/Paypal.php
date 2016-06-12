@@ -56,7 +56,7 @@ class Paypal extends BasePaypal
 
             // invoice information
             'invoice'       => $order->getReference(),
-            'amount'        => $order->getTotalInc(),
+            'amount'        => strval(round(floatval($order->getTotalInc()), 2)),
             'currency_code' => $order->getCurrency(),
             'item_name'     => 'Order '.$order->getReference(),
             'bn'            => 'Sonata/1.0', // Assign Build Notation for PayPal Support
