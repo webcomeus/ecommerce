@@ -51,7 +51,7 @@ class Paypal extends BasePaypal
             'business'      => $this->getOption('account'),
             'cert_id'       => $this->getOption('cert_id'),
             'no_shipping'   => '1', // client cannot add shipping address
-            'lc'            => 'EN', // user interface language
+            'lc'            => 'ES', // user interface language
             'no_note'       => '1', // no comment on paypal
 
             // invoice information
@@ -91,8 +91,12 @@ class Paypal extends BasePaypal
         $html .= '<input type="hidden" name="cmd" value="_s-xclick">'."\n";
         $html .= sprintf('<input type="hidden" name="encrypted" value="%s" />', call_user_func(array($this, $method), $fields));
 
-        $html .= '<p>'.$this->translator->trans('process_to_paiement_bank_page', array(), 'PaymentBundle').'</p>';
-        $html .= '<input type="submit" id="submit_button" value="'.$this->translator->trans('process_to_paiement_btn', array(), 'PaymentBundle').'" />';
+        $html .= '<h1>'.$this->translator->trans('process_to_paiement_bank_page', array(), 'SonataPaymentBundle').'</h1>';
+        if ($this->getOption('debug', false)) {
+            $html .= '<input type="submit" id="submit_button" value="'.$this->translator->trans('process_to_paiement_btn', array(), 'SonataPaymentBundle').'" />';
+        } else {
+            $html .= '<input class="hide" type="submit" id="submit_button" value="'.$this->translator->trans('process_to_paiement_btn', array(), 'SonataPaymentBundle').'" />';
+        }
         $html .= '</form>';
 
         $html .= '</body></html>';
